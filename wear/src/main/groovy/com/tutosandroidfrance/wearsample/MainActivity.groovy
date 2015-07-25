@@ -29,13 +29,13 @@ public class MainActivity extends Activity implements WearProtocol {
 
     private Emmet emmet
 
-    //private Context mContext
+    private Context mContext
 
-   //// @InjectView(value=R.id.pager)
-   // GridViewPager pager
+    @InjectView(value=R.id.pager)
+    GridViewPager pager
 
-    //@InjectView(value=R.id.page_indicator)
-    //DotsPageIndicator dotsPageIndicator
+    @InjectView(value=R.id.page_indicator)
+    DotsPageIndicator dotsPageIndicator
 
 
 
@@ -43,8 +43,7 @@ public class MainActivity extends Activity implements WearProtocol {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        
-
+        SwissKnife.inject(this)
 
         pager = (GridViewPager) findViewById(R.id.pager)
         dotsPageIndicator = (DotsPageIndicator) findViewById(R.id.page_indicator)
