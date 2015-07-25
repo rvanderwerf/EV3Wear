@@ -9,6 +9,7 @@ import android.support.wearable.view.FragmentGridPagerAdapter
 
 import com.github.florent37.davinci.DaVinci
 import com.tutosandroidfrance.wearprotocol.AndroidVersion
+
 import groovy.transform.CompileStatic
 
 import java.util.ArrayList
@@ -18,10 +19,10 @@ import java.util.List
 public class ElementGridPagerAdapter extends FragmentGridPagerAdapter {
 
     private Context context
-    private List<AndroidVersion> androidVersions
+    private List<Map> androidVersions
     private List<Row> mRows
 
-    public ElementGridPagerAdapter(Context context, List<AndroidVersion> androidVersions, FragmentManager fm) {
+    public ElementGridPagerAdapter(Context context, List<Map> androidVersions, FragmentManager fm) {
         super(fm)
 
         this.context = context
@@ -29,10 +30,10 @@ public class ElementGridPagerAdapter extends FragmentGridPagerAdapter {
         this.mRows = new ArrayList<Row>()
 
         //Construit le tableau des éléménts à afficher
-        for (AndroidVersion version : androidVersions) {
+        for (Map version : androidVersions) {
             mRows.add(new Row(
                             //pour l'instant nous ne mettrons qu'un élément par ligne
-                            CardFragment.create(version.getTitre(), version.description)
+                            CardFragment.create(Integer.toString((int)version.get("id")), (String)version.get("joke"))
                     )
             )
         }
@@ -48,7 +49,7 @@ public class ElementGridPagerAdapter extends FragmentGridPagerAdapter {
     //le drawable affichée en background pour la ligne [row]
     @Override
     public Drawable getBackgroundForRow(final int row) {
-        return DaVinci.with(context).load(this.androidVersions.get(row).url).into(this, row)
+        return DaVinci.with(context).load("http://flashgamedistribution.com/thumbs/flying_chuck_norris_head.png").into(this, row)
     }
 
     @Override

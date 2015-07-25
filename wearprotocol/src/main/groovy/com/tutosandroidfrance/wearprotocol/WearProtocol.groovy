@@ -9,5 +9,5 @@ import java.util.List;
  */
 @CompileStatic
 public interface WearProtocol {
-    void onAndroidVersionsReceived(List<AndroidVersion> androidVersions)
+    void onAndroidVersionsReceived(List<Map> androidVersions)
 }

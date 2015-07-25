@@ -9,6 +9,7 @@ import com.arasthel.swissknife.SwissKnife
 import com.arasthel.swissknife.annotations.InjectView
 import com.github.florent37.Emmet
 import com.tutosandroidfrance.wearprotocol.AndroidVersion
+
 import com.tutosandroidfrance.wearprotocol.SmartphoneProtocol
 import com.tutosandroidfrance.wearprotocol.WearProtocol
 import groovy.transform.CompileStatic
@@ -25,17 +26,17 @@ public class MainActivity extends Activity implements WearProtocol {
     private DotsPageIndicator dotsPageIndicator
 
     //la liste des éléments à afficher
-    private List<AndroidVersion> elementList = new ArrayList<>()
+    private List<Map> elementList = new ArrayList<>()
 
     private Emmet emmet
 
     private Context mContext
 
-    @InjectView(value=R.id.pager)
-    GridViewPager pager
+    //@InjectView(value=R.id.pager)
+    //GridViewPager pager
 
-    @InjectView(value=R.id.page_indicator)
-    DotsPageIndicator dotsPageIndicator
+    //@InjectView(value=R.id.page_indicator)
+    //DotsPageIndicator dotsPageIndicator
 
 
 
@@ -43,7 +44,7 @@ public class MainActivity extends Activity implements WearProtocol {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        SwissKnife.inject(this)
+        //SwissKnife.inject(this)
 
         pager = (GridViewPager) findViewById(R.id.pager)
         dotsPageIndicator = (DotsPageIndicator) findViewById(R.id.page_indicator)
@@ -67,7 +68,7 @@ public class MainActivity extends Activity implements WearProtocol {
 
     //send to the phone
     @Override
-    public void onAndroidVersionsReceived(List<AndroidVersion> androidVersions) {
+    public void onAndroidVersionsReceived(List<Map> androidVersions) {
         if (androidVersions != null && this.elementList != null && this.elementList.isEmpty()) {
             this.elementList.addAll(androidVersions)
             startMainScreen()
