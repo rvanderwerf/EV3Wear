@@ -8,14 +8,11 @@ import android.support.wearable.view.GridViewPager
 import com.arasthel.swissknife.SwissKnife
 import com.arasthel.swissknife.annotations.InjectView
 import com.github.florent37.Emmet
-import com.tutosandroidfrance.wearprotocol.AndroidVersion
 
 import com.tutosandroidfrance.wearprotocol.SmartphoneProtocol
 import com.tutosandroidfrance.wearprotocol.WearProtocol
 import groovy.transform.CompileStatic
 
-import java.util.ArrayList
-import java.util.List
 
 @CompileStatic
 public class MainActivity extends Activity implements WearProtocol {
@@ -25,13 +22,14 @@ public class MainActivity extends Activity implements WearProtocol {
     private GridViewPager pager
     private DotsPageIndicator dotsPageIndicator
 
-    //la liste des éléments à afficher
+    //the list of items to be displayed
     private List<Map> elementList = new ArrayList<>()
 
     private Emmet emmet
 
     private Context mContext
 
+    // for some reason SwissKnife is not injecting here, see https://github.com/Arasthel/SwissKnife/issues/38
     //@InjectView(value=R.id.pager)
     //GridViewPager pager
 

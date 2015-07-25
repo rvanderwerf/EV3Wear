@@ -15,7 +15,7 @@ ext {
             grooidVersion: '2.4.4',
             androidSupportV13: "22.0.0",
             buildToolsVersion: "22.0.1",
-            compileSdkVersion: 21
+            compileSdkVersion: 22
     ]
     
 }
