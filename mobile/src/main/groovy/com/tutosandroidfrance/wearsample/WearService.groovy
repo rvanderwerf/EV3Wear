@@ -36,17 +36,24 @@ public class WearService extends EmmetWearableListenerService implements Smartph
     @Override
     public void hello() {
         //Retrofit used to make a REST call
-        AndroidService androidService = new RestAdapter.Builder()
+        /*AndroidService androidService = new RestAdapter.Builder()
                 .setEndpoint(AndroidService.ENDPOINT)
-                .build().create(AndroidService.class)
+                .build().create(AndroidService.class)*/
         def slurper = new JsonSlurper()
-        def result = slurper.parse(new URL(AndroidService.ENDPOINT+"/raw.php?i=PHPXBsEf"))
-        ArrayList versions = new ArrayList()
-        result.each { a ->
-            versions.add(a as AndroidVersion)
+
+        def jokesList = new ArrayList()
+        4.times {
+            def randomJoke = slurper.parse(new URL("http://api.icndb.com/jokes/random"))
+            jokesList.add(randomJoke.getAt("value"))
         }
+
+
+        wearProtocol.onAndroidVersionsReceived(jokesList)
         //Retrieves and deserialise the contents of my JSON file into an object List<AndroidVersion>
-        androidService.getElements(new Callback<List<AndroidVersion>>() {
+
+        // let's groovify this!
+
+        /*androidService.getElements(new Callback<List<AndroidVersion>>() {
             @Override
             public void success(List<AndroidVersion> androidVersions, Response response) {
 
@@ -57,7 +64,9 @@ public class WearService extends EmmetWearableListenerService implements Smartph
             @Override
             public void failure(RetrofitError error) {
             }
-        })
+        })*/
+
+
     }
 
     @Override
