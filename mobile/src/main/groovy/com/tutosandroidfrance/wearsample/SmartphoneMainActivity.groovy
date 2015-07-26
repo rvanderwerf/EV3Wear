@@ -1,9 +1,14 @@
 package com.tutosandroidfrance.wearsample
 
+import android.app.Fragment
+import android.content.Intent
 import android.support.v7.app.ActionBarActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import groovy.transform.CompileStatic
 
 @CompileStatic
@@ -23,6 +28,20 @@ public class SmartphoneMainActivity extends ActionBarActivity {
         return true
     }
 
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item_new_thingy:
+                //Toast.makeText(this, "ADD!", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(this, MyPreferencesActivity.class);
+                startActivity(i);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    /**
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -33,8 +52,10 @@ public class SmartphoneMainActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true
-        }
+        }**/
 
-        return super.onOptionsItemSelected(item)
-    }
+
+
+
 }
+

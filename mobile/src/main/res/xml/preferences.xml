@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference android:title="Rover App URL Base"
+        android:key="baseURL"
+        android:defaultValue="http://192.168.1.181"
+        android:summary="This is the Base URL of the EV3 Grails Rover App"></EditTextPreference>
+    <EditTextPreference android:title="Movement duration(ms)"
+        android:key="directionDuration"
+        android:defaultValue="1000"
+        android:summary="This length of time the robot will run the direction you pressed on the watch"></EditTextPreference>
+
+</PreferenceScreen>
