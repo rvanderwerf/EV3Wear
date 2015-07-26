@@ -9,6 +9,9 @@ import android.support.wearable.view.FragmentGridPagerAdapter
 import com.github.florent37.davinci.DaVinci
 import groovy.transform.CompileStatic
 
+/**
+ * This code originally comes from tutosandroidfrance wear-davinci-emmet sample project
+ */
 @CompileStatic
 public class ElementGridPagerAdapter extends FragmentGridPagerAdapter {
 

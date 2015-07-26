@@ -28,21 +28,60 @@ public class WearService extends EmmetWearableListenerService implements Smartph
 
     //when the watch sends a hello message to the  smartphone
     @Override
-    public void hello() {
+    public void up() {
 
         def slurper = new JsonSlurper()
 
-        def jokesList = new ArrayList()
-        4.times {
-            def randomJoke = slurper.parse(new URL("http://api.icndb.com/jokes/random"))
-            jokesList.add(randomJoke.getAt("value"))
-        }
+        def randomJoke = slurper.parse(new URL("http://api.icndb.com/jokes/random"))
 
 
-        wearProtocol.onAndroidVersionsReceived(jokesList)
+
+        wearProtocol.onAndroidVersionsReceived(randomJoke.toString())
 
 
     }
+    @Override
+    public void down() {
+
+        def slurper = new JsonSlurper()
+
+        def randomJoke = slurper.parse(new URL("http://api.icndb.com/jokes/random"))
+
+
+
+        wearProtocol.onAndroidVersionsReceived(randomJoke.toString())
+
+
+    }
+    @Override
+    public void left() {
+
+        def slurper = new JsonSlurper()
+
+        def randomJoke = slurper.parse(new URL("http://api.icndb.com/jokes/random"))
+
+
+
+        wearProtocol.onAndroidVersionsReceived(randomJoke.toString())
+
+
+    }
+    @Override
+    public void right() {
+
+        def slurper = new JsonSlurper()
+
+        def randomJoke = slurper.parse(new URL("http://api.icndb.com/jokes/random"))
+
+
+
+        wearProtocol.onAndroidVersionsReceived(randomJoke.toString())
+
+
+    }
+
+
+
 
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {

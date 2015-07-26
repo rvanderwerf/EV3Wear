@@ -3,10 +3,14 @@ package com.tutosandroidfrance.wearsample
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
+import android.support.wearable.view.BoxInsetLayout
 import android.support.wearable.view.DotsPageIndicator
 import android.support.wearable.view.GridViewPager
+import android.widget.TextView
 import com.arasthel.swissknife.SwissKnife
 import com.arasthel.swissknife.annotations.InjectView
+import com.arasthel.swissknife.annotations.OnClick
+import com.arasthel.swissknife.annotations.Profile
 import com.github.florent37.Emmet
 
 import com.tutosandroidfrance.wearprotocol.SmartphoneProtocol
@@ -19,13 +23,9 @@ public class MainActivity extends Activity implements WearProtocol {
 
     private final static String TAG = MainActivity.class.getCanonicalName()
 
-    private GridViewPager pager
-    private DotsPageIndicator dotsPageIndicator
-
-    //the list of items to be displayed
-    private List<Map> elementList = new ArrayList<>()
 
     private Emmet emmet
+    SmartphoneProtocol smartphoneProtocol
 
     private Context mContext
 
@@ -36,26 +36,49 @@ public class MainActivity extends Activity implements WearProtocol {
     //@InjectView(value=R.id.page_indicator)
     //DotsPageIndicator dotsPageIndicator
 
+    @InjectView(R.id.title)
+    TextView firstTextView
 
+    @OnClick(R.id.up)
+    public void up() {
+        smartphoneProtocol.up()
+        firstTextView.text = "up"
+    }
+
+    @OnClick(R.id.backward)
+    public void down() {
+        smartphoneProtocol.down()
+        firstTextView.text = "down"
+    }
+
+    @OnClick(R.id.left)
+    public void left() {
+        smartphoneProtocol.left()
+        firstTextView.text = "left"
+    }
+
+    @OnClick(R.id.right)
+    public void right() {
+        smartphoneProtocol.right()
+        firstTextView.text = "right"
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //SwissKnife.inject(this)
+        SwissKnife.inject(this)
 
-        pager = (GridViewPager) findViewById(R.id.pager)
-        dotsPageIndicator = (DotsPageIndicator) findViewById(R.id.page_indicator)
-        dotsPageIndicator.setPager(pager)
+
 
         //initialise Emmet
         emmet = new Emmet()
         emmet.onCreate(this)
 
         emmet.registerReceiver(WearProtocol.class, this)
-        SmartphoneProtocol smartphoneProtocol = emmet.createSender(SmartphoneProtocol.class)
+        smartphoneProtocol = emmet.createSender(SmartphoneProtocol.class)
 
-        smartphoneProtocol.hello() //send the hello message
+        //smartphoneProtocol.hello() //send the hello message
     }
 
     @Override
@@ -66,23 +89,11 @@ public class MainActivity extends Activity implements WearProtocol {
 
     //send to the phone
     @Override
-    public void onAndroidVersionsReceived(List<Map> androidVersions) {
-        if (androidVersions != null && this.elementList != null && this.elementList.isEmpty()) {
-            this.elementList.addAll(androidVersions)
-            startMainScreen()
-        }
+    public void onAndroidVersionsReceived(String androidVersions) {
+       // if (androidVersions != null)
+        //startMainScreen()
+            //firstTextView.text = "command sent!"
     }
 
-    public void startMainScreen() {
-        //consider performing the actions in the graphics UIThread
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                //display here in viewpager
 
-                if (pager != null && pager.getAdapter() == null)
-                    pager.setAdapter(new ElementGridPagerAdapter(MainActivity.this, elementList, getFragmentManager()))
-            }
-        })
-    }
 }

@@ -1,5 +1,10 @@
 <resources>
-    <string name="app_name">WearSample1</string>
+    <string name="app_name">EV3Wear</string>
     <string name="hello_round">Hello Round World!</string>
     <string name="hello_square">Hello Square World!</string>
+    <string name="up">up</string>
+    <string name="backward">backward</string>
+    <string name="left">left</string>
+    <string name="right">right</string>
+    <string name="title">title</string>
 </resources>

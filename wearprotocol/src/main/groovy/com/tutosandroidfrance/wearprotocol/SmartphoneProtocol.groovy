@@ -7,5 +7,8 @@ import groovy.transform.CompileStatic;
  */
 @CompileStatic
 public interface SmartphoneProtocol {
-    void hello()
+    void up()
+    void down()
+    void left()
+    void right()
 }
