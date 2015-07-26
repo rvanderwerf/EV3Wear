@@ -26,7 +26,7 @@ public class ElementGridPagerAdapter extends FragmentGridPagerAdapter {
         //Built the table to display elements
         for (Map version : androidVersions) {
             mRows.add(new Row(
-                            //pour l'instant nous ne mettrons qu'un élément par ligne
+                            //we will now put an item by line
                             CardFragment.create(Integer.toString((int)version.get("id")), (String)version.get("joke"))
                     )
             )
