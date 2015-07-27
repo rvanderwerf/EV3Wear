@@ -32,21 +32,22 @@ public class WearService extends EmmetWearableListenerService implements Smartph
 
         baseURL = SP.getString("baseURL", "http://192.168.1.181");
 
-        directionDuration = Integer.parseInt(SP.getString("directionDuration","1000"));
+        directionDuration = Integer.parseInt(SP.getString("directionDuration","100"));
     }
 
     //when the watch sends a hello message to the  smartphone
     @Override
     public void up() {
-        def moveUri = "${baseURL}/api/forward/${directionDuration}"
+
 
         def slurper = new JsonSlurper()
 
-        def randomJoke = slurper.parse(new URL("http://api.icndb.com/jokes/random"))
+        def moveUri = "${baseURL}/api/forward/${directionDuration}"
+        def response = slurper.parse(new URL(moveUri))
 
 
 
-        wearProtocol.onAndroidVersionsReceived(randomJoke.toString())
+        wearProtocol.onAndroidVersionsReceived(response.toString())
 
 
     }
